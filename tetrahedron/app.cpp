@@ -430,18 +430,14 @@ void App::createDescriptorSetLayout()
 void App::createGraphicsPipeline()
 {
 	auto vertShaderCode = readFile("vert.spv");
-	auto geomShaderCode = readFile("geom.spv");
 	auto fragShaderCode = readFile("frag.spv");
 
 	vk::ShaderModuleCreateInfo vertInfo(vk::ShaderModuleCreateFlags(), vertShaderCode.size(),
 		reinterpret_cast<uint32_t*>(vertShaderCode.data()));
-	vk::ShaderModuleCreateInfo geomInfo(vk::ShaderModuleCreateFlags(), geomShaderCode.size(),
-		reinterpret_cast<uint32_t*>(geomShaderCode.data()));
 	vk::ShaderModuleCreateInfo fragInfo(vk::ShaderModuleCreateFlags(), fragShaderCode.size(),
 		reinterpret_cast<uint32_t*>(fragShaderCode.data()));
 
 	auto vertShaderModule = device->createShaderModule(vertInfo);
-	auto geomShaderModule = device->createShaderModule(geomInfo);
 	auto fragShaderModule = device->createShaderModule(fragInfo);
 
 	vector<vk::PipelineShaderStageCreateInfo> stageInfo = {
